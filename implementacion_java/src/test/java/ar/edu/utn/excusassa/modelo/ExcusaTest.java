@@ -1,8 +1,8 @@
 package ar.edu.utn.excusassa.modelo;
 
+import ar.edu.utn.excusassa.modelo.motivo.Dormido;
+import ar.edu.utn.excusassa.modelo.motivo.Inverosimil;
 import ar.edu.utn.excusassa.modelo.motivo.Motivo;
-import ar.edu.utn.excusassa.modelo.motivo.MotivoDormido;
-import ar.edu.utn.excusassa.modelo.motivo.MotivoInverosimil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ class ExcusaTest {
     @Test
     @DisplayName("se crea con empleado y motivo, no aceptada por defecto")
     void seCreaSinAceptar() {
-        Motivo motivo = new MotivoDormido();
+        Motivo motivo = new Dormido();
         Excusa excusa = new Excusa(empleado, motivo);
 
         assertSame(empleado, excusa.getEmpleado());
@@ -28,7 +28,7 @@ class ExcusaTest {
     @Test
     @DisplayName("se puede aceptar una excusa")
     void aceptarExcusa() {
-        Excusa excusa = new Excusa(empleado, new MotivoDormido());
+        Excusa excusa = new Excusa(empleado, new Dormido());
 
         excusa.aceptar();
 
@@ -38,7 +38,7 @@ class ExcusaTest {
     @Test
     @DisplayName("se puede rechazar una excusa con mensaje")
     void rechazarExcusa() {
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
 
         excusa.rechazar("Excusa rechazada: necesitamos pruebas contundentes");
 
@@ -49,7 +49,7 @@ class ExcusaTest {
     @Test
     @DisplayName("aceptar setea mensaje de resultado")
     void aceptarSeteaMensaje() {
-        Excusa excusa = new Excusa(empleado, new MotivoDormido());
+        Excusa excusa = new Excusa(empleado, new Dormido());
 
         excusa.aceptar();
 

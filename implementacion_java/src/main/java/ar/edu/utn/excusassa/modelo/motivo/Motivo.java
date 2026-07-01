@@ -1,8 +1,26 @@
 package ar.edu.utn.excusassa.modelo.motivo;
 
-public interface Motivo {
+public abstract class Motivo {
 
-    String getTipo();
+    public abstract String getNombre();
 
-    String getDescripcion();
+    public abstract String getDescripcion();
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Motivo motivo = (Motivo) o;
+        return getNombre().equals(motivo.getNombre());
+    }
+
+    @Override
+    public final int hashCode() {
+        return getNombre().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return getNombre();
+    }
 }

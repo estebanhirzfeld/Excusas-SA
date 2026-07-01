@@ -1,10 +1,27 @@
 package ar.edu.utn.excusassa.prontuario;
 
-public interface Observable {
+import java.util.ArrayList;
+import java.util.List;
 
-    void agregarObservador(ObservadorProntuario observador);
+public abstract class Observable {
 
-    void eliminarObservador(ObservadorProntuario observador);
+    private final List<ObservadorProntuario> observadores;
 
-    void notificarObservadores(Prontuario prontuario);
+    protected Observable() {
+        this.observadores = new ArrayList<>();
+    }
+
+    public void agregarObservador(ObservadorProntuario observador) {
+        observadores.add(observador);
+    }
+
+    public void eliminarObservador(ObservadorProntuario observador) {
+        observadores.remove(observador);
+    }
+
+    protected void notificarObservadores(Prontuario prontuario) {
+        for (ObservadorProntuario obs : observadores) {
+            obs.notificar(prontuario);
+        }
+    }
 }

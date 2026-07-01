@@ -2,7 +2,7 @@ package ar.edu.utn.excusassa.prontuario;
 
 import ar.edu.utn.excusassa.modelo.Empleado;
 import ar.edu.utn.excusassa.modelo.Excusa;
-import ar.edu.utn.excusassa.modelo.motivo.MotivoInverosimil;
+import ar.edu.utn.excusassa.modelo.motivo.Inverosimil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class AdministradorProntuariosTest {
     @DisplayName("crea y almacena un prontuario")
     void creaYAlmacena() {
         Empleado empleado = new Empleado("Juan", "juan@mail.com", 100);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
         Prontuario prontuario = new Prontuario(empleado, excusa);
 
         admin.crearProntuario(prontuario);
@@ -50,7 +50,7 @@ class AdministradorProntuariosTest {
         admin.agregarObservador(observador2);
 
         Empleado empleado = new Empleado("Juan", "juan@mail.com", 100);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
         Prontuario prontuario = new Prontuario(empleado, excusa);
 
         admin.crearProntuario(prontuario);
@@ -67,12 +67,11 @@ class AdministradorProntuariosTest {
         admin.eliminarObservador(observador1);
 
         Empleado empleado = new Empleado("Juan", "juan@mail.com", 100);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
         Prontuario prontuario = new Prontuario(empleado, excusa);
 
         admin.crearProntuario(prontuario);
 
         verify(observador2).notificar(prontuario);
-        // observador1 no debería haber sido notificado (fue eliminado)
     }
 }

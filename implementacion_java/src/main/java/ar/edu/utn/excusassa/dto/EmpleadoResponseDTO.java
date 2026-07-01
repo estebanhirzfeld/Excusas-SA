@@ -1,26 +1,14 @@
-package ar.edu.utn.excusassa.modelo;
+package ar.edu.utn.excusassa.dto;
 
-import jakarta.persistence.*;
+public class EmpleadoResponseDTO {
 
-@Entity
-@Table(name = "empleados")
-public class Empleado {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String email;
-
-    @Column(name = "nro_legajo", unique = true)
     private int nroLegajo;
 
-    protected Empleado() {
-        // Constructor vacío requerido por JPA
-    }
-
-    public Empleado(String nombre, String email, int nroLegajo) {
+    public EmpleadoResponseDTO(Long id, String nombre, String email, int nroLegajo) {
+        this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.nroLegajo = nroLegajo;

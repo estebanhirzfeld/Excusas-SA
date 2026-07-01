@@ -2,7 +2,7 @@ package ar.edu.utn.excusassa.prontuario;
 
 import ar.edu.utn.excusassa.modelo.Empleado;
 import ar.edu.utn.excusassa.modelo.Excusa;
-import ar.edu.utn.excusassa.modelo.motivo.MotivoInverosimil;
+import ar.edu.utn.excusassa.modelo.motivo.Inverosimil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class ProntuarioTest {
     @DisplayName("se crea con empleado y excusa")
     void seCreaCorrecto() {
         Empleado empleado = new Empleado("Juan", "juan@mail.com", 100);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
 
         Prontuario prontuario = new Prontuario(empleado, excusa);
 
@@ -27,7 +27,7 @@ class ProntuarioTest {
     @DisplayName("el nro de legajo viene del empleado")
     void nroLegajoDelEmpleado() {
         Empleado empleado = new Empleado("Juan", "juan@mail.com", 100);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
         Prontuario prontuario = new Prontuario(empleado, excusa);
 
         assertEquals(100, prontuario.getEmpleado().getNroLegajo());

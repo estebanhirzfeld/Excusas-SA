@@ -1,9 +1,9 @@
 package ar.edu.utn.excusassa.prontuario;
 
-import ar.edu.utn.excusassa.chain.*;
+import ar.edu.utn.excusassa.evaluacion.*;
 import ar.edu.utn.excusassa.modelo.Empleado;
 import ar.edu.utn.excusassa.modelo.Excusa;
-import ar.edu.utn.excusassa.modelo.motivo.MotivoInverosimil;
+import ar.edu.utn.excusassa.modelo.motivo.Inverosimil;
 import ar.edu.utn.excusassa.notificacion.EmailSender;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -42,12 +42,12 @@ class ObserverIntegracionTest {
         admin.agregarObservador(p -> prontuariosNotificados.add(p));
 
         // Cadena directa al CEO (sin GerenteRRHH para que llegue)
-        Responsable cadena = new ChainOfBuilder()
-            .agregar(new CEO("Jefe", "jefe@mail.com", 1, emailSender, admin))
+        Responsable cadena = new CadenaDeResponsablesBuilder()
+            .agregarCEO("Jefe", "jefe@mail.com", 1, emailSender, admin)
             .construir();
 
         Empleado empleado = new Empleado("Ana", "ana@mail.com", 200);
-        Excusa excusa = new Excusa(empleado, new MotivoInverosimil());
+        Excusa excusa = new Excusa(empleado, new Inverosimil());
 
         cadena.revisarExcusa(excusa);
 

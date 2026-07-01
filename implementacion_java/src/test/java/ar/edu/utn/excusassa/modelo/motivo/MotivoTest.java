@@ -5,52 +5,52 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Motivos (polimorfismo)")
+@DisplayName("Motivos (polimorfismo y value object)")
 class MotivoTest {
 
     @Test
-    @DisplayName("MotivoDormido retorna tipo y descripción correctos")
+    @DisplayName("Dormido retorna nombre y descripción correctos")
     void motivoDormido() {
-        Motivo motivo = new MotivoDormido();
+        Motivo motivo = new Dormido();
 
-        assertEquals("DORMIDO", motivo.getTipo());
+        assertEquals("Dormido", motivo.getNombre());
         assertNotNull(motivo.getDescripcion());
         assertFalse(motivo.getDescripcion().isEmpty());
     }
 
     @Test
-    @DisplayName("MotivoTransporte retorna tipo y descripción correctos")
+    @DisplayName("Transporte retorna nombre y descripción correctos")
     void motivoTransporte() {
-        Motivo motivo = new MotivoTransporte();
+        Motivo motivo = new Transporte();
 
-        assertEquals("TRANSPORTE", motivo.getTipo());
+        assertEquals("Transporte", motivo.getNombre());
         assertNotNull(motivo.getDescripcion());
     }
 
     @Test
-    @DisplayName("MotivoSuministro retorna tipo y descripción correctos")
+    @DisplayName("Suministro retorna nombre y descripción correctos")
     void motivoSuministro() {
-        Motivo motivo = new MotivoSuministro();
+        Motivo motivo = new Suministro();
 
-        assertEquals("SUMINISTRO", motivo.getTipo());
+        assertEquals("Suministro", motivo.getNombre());
         assertNotNull(motivo.getDescripcion());
     }
 
     @Test
-    @DisplayName("MotivoFamiliarACargo retorna tipo y descripción correctos")
+    @DisplayName("FamiliarACargo retorna nombre y descripción correctos")
     void motivoFamiliar() {
-        Motivo motivo = new MotivoFamiliarACargo();
+        Motivo motivo = new FamiliarACargo();
 
-        assertEquals("FAMILIAR", motivo.getTipo());
+        assertEquals("Familiar a cargo", motivo.getNombre());
         assertNotNull(motivo.getDescripcion());
     }
 
     @Test
-    @DisplayName("MotivoInverosimil retorna tipo y descripción correctos")
+    @DisplayName("Inverosimil retorna nombre y descripción correctos")
     void motivoInverosimil() {
-        Motivo motivo = new MotivoInverosimil();
+        Motivo motivo = new Inverosimil();
 
-        assertEquals("INVEROSIMIL", motivo.getTipo());
+        assertEquals("Inverosímil", motivo.getNombre());
         assertNotNull(motivo.getDescripcion());
     }
 
@@ -58,16 +58,28 @@ class MotivoTest {
     @DisplayName("todos los motivos son instancias de Motivo (polimorfismo)")
     void todosImplementanMotivo() {
         Motivo[] motivos = {
-            new MotivoDormido(),
-            new MotivoTransporte(),
-            new MotivoSuministro(),
-            new MotivoFamiliarACargo(),
-            new MotivoInverosimil()
+            new Dormido(),
+            new Transporte(),
+            new Suministro(),
+            new FamiliarACargo(),
+            new Inverosimil()
         };
 
         for (Motivo m : motivos) {
-            assertNotNull(m.getTipo());
+            assertNotNull(m.getNombre());
             assertNotNull(m.getDescripcion());
         }
+    }
+
+    @Test
+    @DisplayName("igualdad por valor (equals funciona correctamente)")
+    void igualdadPorValor() {
+        Motivo m1 = new Dormido();
+        Motivo m2 = new Dormido();
+        Motivo m3 = new Transporte();
+
+        assertEquals(m1, m2);
+        assertNotEquals(m1, m3);
+        assertEquals(m1.hashCode(), m2.hashCode());
     }
 }
