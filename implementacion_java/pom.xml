@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>ar.edu.utn</groupId>
+    <groupId>ar.edu.davinci</groupId>
     <artifactId>excusas-sa</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Excusas S.A.</name>
